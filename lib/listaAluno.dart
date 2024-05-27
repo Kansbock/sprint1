@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:projetoeureka3/backend/buscas.dart';
 import 'dart:convert';
 
 import 'package:projetoeureka3/widgets/appbar.dart';
@@ -20,15 +21,9 @@ class _ListaAlunoState extends State<ListaAluno> {
   @override
   void initState() {
     super.initState();
-    _futureData = getData(widget.nomeAluno);
+    _futureData = BuscarAluno(widget.nomeAluno);
   }
 
-  Future<List<dynamic>> getData(String nomeAluno) async {
-    final uri = Uri.parse("http://192.168.15.7/dashboard/Eureka_2023/getdata.php?nome=$nomeAluno");
-    final response = await http.get(uri);
-    final data = json.decode(response.body);
-    return data;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +47,7 @@ class _ListaAlunoState extends State<ListaAluno> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => BuscaAluno(
+                          builder: (cotext) => BuscaAluno(
                             nome: data[index]['nomeAluno'],
                             projeto: data[index]['tituloTrabalho'],
                             estande: data[index]['numeroEstande'],

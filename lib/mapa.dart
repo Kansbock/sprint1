@@ -30,7 +30,7 @@ class _AStarPageState extends State<AStarPage> {
 
   List<List<int>> grid = List.generate(
     numRows,
-    (_) => List<int>.filled(numCols, 1), // Fill grid with 1s
+    (_) => List<int>.filled(numCols, 1),
   );
 
   List<Point> path = [];
